@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayTextOnTrigger : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class DisplayTextOnTrigger : TriggerColliderEvent {
+    public string text;
+    public float time;
+    public override void Call()
+    {
+        base.Call();
+        DialogeEngine.instance.StartDisplayTextInTime(text, time);
+    }
 }

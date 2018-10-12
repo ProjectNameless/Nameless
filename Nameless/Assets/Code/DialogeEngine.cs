@@ -28,18 +28,20 @@ public class DialogeEngine : MonoBehaviour {
     /// <param name="time"></param>
 	public void StartDisplayTextInTime(string text, float time)
     {
+        StopAllCoroutines();
         StartCoroutine(DisplayTextInTime(text, time));
     }
     private IEnumerator DisplayTextInTime(string text, float time)
     {
         TextBox.SetActive(true);
-        int lettersPerSecond = Mathf.RoundToInt((text.Length - 1) / time);
+        float lettersPerSecond = (text.Length - 1) / time;
         int letterIndex = 0;
         Captions.text = "";
         while((Captions.text.Length-1 < text.Length-1) && (!Input.GetKeyDown(KeyCode.Return)))
         {
             Captions.text += text[letterIndex];
-            yield return new WaitForSeconds(lettersPerSecond);
+            letterIndex++;
+            yield return new WaitForSeconds(1/lettersPerSecond);
         }
         Captions.text = text;
         yield return new WaitForSeconds(time);
