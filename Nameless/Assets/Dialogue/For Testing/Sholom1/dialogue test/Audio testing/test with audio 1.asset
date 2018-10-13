@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09460eb4cc4088c4892e807e1f1ce8f0, type: 3}
+  m_Name: test with audio 1
+  m_EditorClassIdentifier: 
+  text: Welcome to Vault Sixty-Eight, a place that could use a woman's touch. One
+    lady plus a thousand men to play with, but it seems I may have played with them
+    too much...  Please save me from Vault Forty-Three! A panther's been put here
+    by mistake! It's wild and it's vicious, and thinks I smell delicious! Good thing
+    Vault tech's unlikely to break-  So seal the door and stay inside 'Til hope's
+    no more and all your dreams have died!  Yes, life in vaults is quite a curse,
+    but Vault-Tec tells us all the fallout's surely worse!  Greetings, my Vault Dweller
+    friends! I'm king and commander of this vault! You may say I'm just a lonely psycho,
+    but if I kill you, it's all the puppet's fault...  I'm Gary from Vault One-Oh-Eight.
+    That's Gary, also Gary.  They're my clones. There used to be non-Garies, but things
+    got a little hairy... Now I'm stuck here with these Garies all alone!  So seal
+    the door and lock it tight! There's Ghouls galore and ghastly things that bite!  We're
+    safe from all nuclear assault! So just surrender all your aspirations, and embrace
+    exasperation with your newfound life inside a vault!  And the fallout's surely
+    worse!
+  time: 1.25
+  voice: {fileID: 8300000, guid: a6138f40ea5028140a78d4a3bb9396af, type: 3}

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DisplayTextOnTrigger : TriggerColliderEvent {
-    public string text;
-    public float time;
+    public DialogueSO[] dialogue;
     public override void Call()
     {
         base.Call();
-        DialogeEngine.instance.StartDisplayTextInTime(text, time);
+        DialogeEngine.instance.StartDisplayTextInTime(dialogue, gameObject);
     }
 }
