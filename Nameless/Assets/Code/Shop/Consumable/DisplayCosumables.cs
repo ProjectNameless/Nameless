@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class DisplayCosumables : MonoBehaviour {
 
+    public Text moneyText;
+    string moneyString;
+    int moneyValue;
+
     public ConsumableSO item;
+    public GameObject buyCard;
 
     public Image sprite;
     public Text nameValue;
@@ -23,5 +28,21 @@ public class DisplayCosumables : MonoBehaviour {
         healthValue.text = item.healthBoost.ToString();
         costValue.text = item.cost.ToString();
 	}
-	
+
+    private void Update()
+    {
+        moneyString = moneyText.text;
+        moneyValue = int.Parse(moneyString);
+    }
+
+    public void buyItem ()
+    {
+        if(moneyValue >= item.cost)
+        {
+            buyCard.SetActive(false);
+            moneyText.text = (moneyValue - item.cost).ToString();
+            //add inventory code, ect here
+        }
+    }
+
 }

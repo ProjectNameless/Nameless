@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class Money : MonoBehaviour {
 
-    public Text moneyValue;
-    public int startMoney;
+    public int startMoney = 500;
     public int currentMoney;
+
+    public Text moneyValue;
 
 	// Use this for initialization
 	void Start () {
-        startMoney = int.Parse(moneyValue.text);
         currentMoney = startMoney;
-    }
+	}
 	
 	// Update is called once per frame
 	void Update () {
