@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028556, g: 0.22571613, b: 0.30692446, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657946, g: 0.49641472, b: 0.5748201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -233,7 +233,7 @@ Prefab:
     - target: {fileID: 224904843115065380, guid: d2977116f88bbac439945de982547930,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000025680842
+      value: -0.000021713173
       objectReference: {fileID: 0}
     - target: {fileID: 224962300386428326, guid: d2977116f88bbac439945de982547930,
         type: 2}
@@ -675,7 +675,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
