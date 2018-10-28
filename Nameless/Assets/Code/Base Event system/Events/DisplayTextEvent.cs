@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayTextOnTrigger : TriggerColliderEvent {
+public class DisplayTextEvent : Event {
     public DialogueSO[] dialogue;
     public override void Call()
     {
-        base.Call();
         DialogeEngine.instance.StartDisplayTextInTime(dialogue, gameObject);
+        if (next != null) next.Call();
     }
 }
