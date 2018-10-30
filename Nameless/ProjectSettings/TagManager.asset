@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Captions
   - Text Box
+  - Reputation Scaler
+  - Reputation Text
   layers:
   - Default
   - TransparentFX

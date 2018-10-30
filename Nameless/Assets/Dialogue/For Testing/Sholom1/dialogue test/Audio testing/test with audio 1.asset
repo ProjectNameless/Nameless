@@ -27,4 +27,8 @@ MonoBehaviour:
     exasperation with your newfound life inside a vault!  And the fallout's surely
     worse!
   time: 1
+  minimumRepValue: 0
+  incorrectReputationResponse: {fileID: 11400000, guid: 123f8c9b5ab4dc34abab6c102d740163,
+    type: 2}
   voice: {fileID: 8300000, guid: a6138f40ea5028140a78d4a3bb9396af, type: 3}
+  interuptable: 1

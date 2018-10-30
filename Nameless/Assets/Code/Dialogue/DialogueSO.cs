@@ -6,4 +6,6 @@ public class DialogueSO : ScriptableObject {
 
     public string text;
     public float time;
+    public int minimumRepValue;
+    public DialogueSO incorrectReputationResponse;
 }

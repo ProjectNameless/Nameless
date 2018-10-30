@@ -7,8 +7,11 @@ public class DialogeEngine : MonoBehaviour {
     private Text Captions;
     private GameObject TextBox;
     private GameObject player;
+    private Text ReputationText;
+    private Slider ReputationScaler;
     public AudioClip[] interuptionMessages;
     public GameObject interuptionPrefab;
+    public int reputation = 0;
     #region singleton
     public static DialogeEngine instance;
     private void Awake()
@@ -24,6 +27,9 @@ public class DialogeEngine : MonoBehaviour {
         Captions = GameObject.FindGameObjectWithTag("Captions").GetComponent<Text>();
         TextBox = GameObject.FindGameObjectWithTag("Text Box");
         player = GameObject.FindGameObjectWithTag("Player");
+        ReputationText = GameObject.FindGameObjectWithTag("Reputation Text").GetComponent<Text>();
+        ReputationScaler = GameObject.FindGameObjectWithTag("Reputation Scaler").GetComponent<Slider>();
+        ChangeReputation(-5);
 	}
     /// <summary>
     /// displays whole string within time specified. letters per second = text.length/time
@@ -35,10 +41,28 @@ public class DialogeEngine : MonoBehaviour {
         StopAllCoroutines();
         StartCoroutine(DisplayTextInTime(dialogues, caller));
     }
+    /// <summary>
+    /// Change by amount the players reputation, and adjust sliders to the current value.
+    /// </summary>
+    /// <param name="amount"></param>
+    public void ChangeReputation(int amount)
+    {
+        reputation += amount;
+        ReputationScaler.value = reputation;
+        ReputationText.text = "Reputation: " + reputation;
+    }
     private IEnumerator DisplayTextInTime(DialogueSO[] dialogues, GameObject caller)
     {
-        foreach (DialogueSO dialogue in dialogues)
+        foreach (DialogueSO currentDialogue in dialogues)
         {
+            DialogueSO dialogue = currentDialogue;
+            while(dialogue.minimumRepValue > reputation)
+            {
+                if (dialogue.incorrectReputationResponse != null)
+                    dialogue = dialogue.incorrectReputationResponse;
+                else
+                    break;
+            }
             TextBox.SetActive(true);
             if (dialogue is DialogueWithAudioSO)
             {
@@ -69,6 +93,7 @@ public class DialogeEngine : MonoBehaviour {
                                 interuptingAudioSource.clip = interuptionMessages[0];
                                 interuptingAudioSource.Play();
                                 interupted = true;
+                                ChangeReputation(-5);
                             }
                             yield return null;
                         }
