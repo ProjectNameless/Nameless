@@ -6,4 +6,5 @@ using UnityEngine;
 public class DialogueWithAudioSO : DialogueSO {
 
     public AudioClip voice;
+    public bool interuptable;
 }

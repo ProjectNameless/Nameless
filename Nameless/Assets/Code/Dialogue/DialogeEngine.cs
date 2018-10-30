@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class DialogeEngine : MonoBehaviour {
     private Text Captions;
     private GameObject TextBox;
+    private GameObject player;
+    public AudioClip[] interuptionMessages;
+    public GameObject interuptionPrefab;
     #region singleton
     public static DialogeEngine instance;
     private void Awake()
@@ -20,6 +23,7 @@ public class DialogeEngine : MonoBehaviour {
     void Start () {
         Captions = GameObject.FindGameObjectWithTag("Captions").GetComponent<Text>();
         TextBox = GameObject.FindGameObjectWithTag("Text Box");
+        player = GameObject.FindGameObjectWithTag("Player");
 	}
     /// <summary>
     /// displays whole string within time specified. letters per second = text.length/time
@@ -52,6 +56,34 @@ public class DialogeEngine : MonoBehaviour {
                     Captions.text += dialogue.text[letterIndex];
                     letterIndex++;
                     yield return new WaitForSeconds(1 / lettersPerSecond);
+                    if (dialogueWithAudio.interuptable)
+                    {
+                        bool interupted = false;
+                        AudioSource interuptingAudioSource = null;
+                        while (Vector3.Distance(player.transform.position, caller.transform.position) > audioSource.maxDistance / 2)
+                        {
+                            audioSource.Pause();
+                            if (!interupted)
+                            {
+                                interuptingAudioSource = GameObject.Instantiate(interuptionPrefab, caller.transform).GetComponent<AudioSource>();
+                                interuptingAudioSource.clip = interuptionMessages[0];
+                                interuptingAudioSource.Play();
+                                interupted = true;
+                            }
+                            yield return null;
+                        }
+                        if (interupted && interuptingAudioSource != null)
+                        {
+                            interuptingAudioSource.clip = interuptionMessages[1];
+                            interuptingAudioSource.Play();
+                            while (interuptingAudioSource.isPlaying)
+                            {
+                                yield return null;
+                            }
+                            Destroy(interuptingAudioSource.gameObject);
+                            audioSource.Play();
+                        }
+                    }
                 }
                 Captions.text = dialogue.text;
                 while (audioSource.isPlaying)

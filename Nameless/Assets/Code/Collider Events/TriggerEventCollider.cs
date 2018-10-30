@@ -9,7 +9,7 @@ public class TriggerEventCollider : MonoBehaviour{
     {
         if (!Repeatable)
         GetComponent<Collider>().enabled = false;
-        Debug.Log(gameObject.name + "was triggered");
+        //Debug.Log(gameObject.name + "was triggered");
         if (EventToCall != null)
             EventToCall.Call();
     }
