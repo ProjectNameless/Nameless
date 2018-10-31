@@ -51,6 +51,12 @@ public class DialogeEngine : MonoBehaviour {
         ReputationScaler.value = reputation;
         ReputationText.text = "Reputation: " + reputation;
     }
+    /// <summary>
+    /// the coroutine that runs along side the update function to allow pausing and checking things mid frame.
+    /// </summary>
+    /// <param name="dialogues"></param>
+    /// <param name="caller"></param>
+    /// <returns></returns>
     private IEnumerator DisplayTextInTime(DialogueSO[] dialogues, GameObject caller)
     {
         foreach (DialogueSO currentDialogue in dialogues)
