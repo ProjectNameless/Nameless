@@ -11,6 +11,9 @@ public class DialogeEngine : MonoBehaviour {
     private Slider ReputationScaler;
     public AudioClip[] interuptionMessages;
     public GameObject interuptionPrefab;
+    public GameObject OptionPrefab;
+    public Transform OptionsContainer;
+    public List<GameObject> options = new List<GameObject>();
     public int reputation = 0;
     #region singleton
     public static DialogeEngine instance;
@@ -29,7 +32,7 @@ public class DialogeEngine : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         ReputationText = GameObject.FindGameObjectWithTag("Reputation Text").GetComponent<Text>();
         ReputationScaler = GameObject.FindGameObjectWithTag("Reputation Scaler").GetComponent<Slider>();
-        ChangeReputation(-5);
+        ChangeReputation(10);
 	}
     /// <summary>
     /// displays whole string within time specified. letters per second = text.length/time
@@ -39,6 +42,7 @@ public class DialogeEngine : MonoBehaviour {
 	public void StartDisplayTextInTime(DialogueSO[] dialogues, GameObject caller)
     {
         StopAllCoroutines();
+        clearOptions();
         StartCoroutine(DisplayTextInTime(dialogues, caller));
     }
     /// <summary>
@@ -140,8 +144,31 @@ public class DialogeEngine : MonoBehaviour {
                     timeTillExpire -= Time.deltaTime;
                 }
             }
+            if (dialogue.dialogueOptions != null)
+            {
+                foreach (DialogueOptionSO option in dialogue.dialogueOptions)
+                {
+                    GameObject newOptionGO = GameObject.Instantiate(OptionPrefab, OptionsContainer);
+                    options.Add(newOptionGO);
+                    newOptionGO.GetComponent<Button>().onClick.AddListener(() => option.OnSelect(caller));
+                    newOptionGO.GetComponentInChildren<Text>().text = option.text;
+                }
+                while (true)
+                {
+                    yield return null;
+                }
+            }
+            EventEngine.instance.Call(dialogue.nextEvent);
             Captions.text = "";
         }
         TextBox.SetActive(false);
+    }
+    public void clearOptions()
+    {
+        foreach (GameObject option in options)
+        {
+            Destroy(option);
+        }
+        options = new List<GameObject>();
     }
 }
