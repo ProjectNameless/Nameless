@@ -14,6 +14,7 @@ public class DialogeEngine : MonoBehaviour {
     public GameObject OptionPrefab;
     public Transform OptionsContainer;
     public List<GameObject> options = new List<GameObject>();
+    private AudioSource lastCall;
     public int reputation = 0;
     #region singleton
     public static DialogeEngine instance;
@@ -41,6 +42,11 @@ public class DialogeEngine : MonoBehaviour {
     /// <param name="time"></param>
 	public void StartDisplayTextInTime(DialogueSO[] dialogues, GameObject caller)
     {
+        if (lastCall != null)
+        {
+            lastCall.Pause();
+            lastCall = null;
+        }
         StopAllCoroutines();
         clearOptions();
         StartCoroutine(DisplayTextInTime(dialogues, caller));
@@ -82,6 +88,7 @@ public class DialogeEngine : MonoBehaviour {
                 AudioClip soundClip = dialogueWithAudio.voice;
                 audioSource.clip = soundClip;
                 audioSource.Play();
+                lastCall = audioSource;
                 float lettersPerSecond = (dialogue.text.Length - 1) / soundClip.length * dialogueWithAudio.time;
                 int letterIndex = 0;
                 Captions.text = "";
