@@ -6,6 +6,7 @@ public class PlaySoundOnEvent : Event {
     public AudioClip clip;
     public override void Call()
     {
+        base.Call();
         AudioSource source = GetComponent<AudioSource>();
         source.clip = clip;
         source.Play();

@@ -4,5 +4,9 @@ using UnityEngine;
 
 public abstract class Event : MonoBehaviour {
     public Event next;
-    public abstract void Call();
+    public int calls = 0;
+    public virtual void Call()
+    {
+        calls++;
+    }
 }
