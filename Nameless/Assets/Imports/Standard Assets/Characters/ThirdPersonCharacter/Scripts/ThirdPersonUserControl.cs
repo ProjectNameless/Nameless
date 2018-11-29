@@ -90,7 +90,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_cursorIsLocked = true;
             }
-            if (DialogeEngine.instance.options.Count != 0)
+            if (DialogeEngine.instance != null && DialogeEngine.instance.options.Count != 0)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
