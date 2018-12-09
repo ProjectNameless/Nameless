@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogeEngine : MonoBehaviour {
+public class DialogueEngine : MonoBehaviour {
     private Text Captions;
     private GameObject TextBox;
     private GameObject player;
@@ -17,7 +17,7 @@ public class DialogeEngine : MonoBehaviour {
     private AudioSource lastCall;
     public int reputation = 0;
     #region singleton
-    public static DialogeEngine instance;
+    public static DialogueEngine instance;
     private void Awake()
     {
         if (instance == null || instance == this)

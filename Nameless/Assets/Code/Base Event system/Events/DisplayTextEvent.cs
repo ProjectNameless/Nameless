@@ -6,7 +6,7 @@ public class DisplayTextEvent : Event {
     public DialogueSO[] dialogue;
     public override void Call()
     {
-        DialogeEngine.instance.StartDisplayTextInTime(dialogue, gameObject);
+        DialogueEngine.instance.StartDisplayTextInTime(dialogue, gameObject);
         if (next != null) next.Call();
     }
 }

@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Quest : MonoBehaviour {
+    public GameObject QuestGiver;
     public List<Goal> goals = new List<Goal>();
     public Event OnCompletion;
     public Text display;
 	// Use this for initialization
-	void Start () {
+    public void Init(GameObject questGiver)
+    {
         InvokeRepeating("UpdateProgress", 1, 1);
-	}
+        QuestGiver = questGiver;
+    }
     private void UpdateProgress()
     {
         List<Goal> goalsToRemove = new List<Goal>();

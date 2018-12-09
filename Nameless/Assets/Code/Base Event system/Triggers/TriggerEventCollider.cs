@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerEventCollider : MonoBehaviour{
+public class TriggerEventCollider : EventCaller{
     public bool Repeatable;
-    public Event EventToCall;
     private void OnTriggerEnter(Collider other)
     {
         if (!Repeatable)

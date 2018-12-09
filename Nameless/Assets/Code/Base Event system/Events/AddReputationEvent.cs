@@ -7,10 +7,10 @@ public class AddReputationEvent : Event {
     public override void Call()
     {
         base.Call();
-        if (DialogeEngine.instance != null)
-            DialogeEngine.instance.ChangeReputation(amount);
+        if (DialogueEngine.instance != null)
+            DialogueEngine.instance.ChangeReputation(amount);
         else
-            Debug.LogWarning("This scene lacks a DialogeEngine. Reputation is currently tied to the DialogeEngine.");
+            Debug.LogWarning("This scene lacks a DialogueEngine. Reputation is currently tied to the DialogueEngine.");
     }
 
 }
